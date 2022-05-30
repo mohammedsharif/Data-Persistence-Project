@@ -6,12 +6,13 @@ using System.IO;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-    public int hightScore;
+    public int highScore;
     public string playerName;
     public int currentScore;
     public string currentPlayer;
     public bool IsRecordBreaked = false;
 
+	//prevent the destruction of the instance between the scenes
     private void Awake() 
     {
         if(Instance != null)
@@ -25,6 +26,7 @@ public class ScoreManager : MonoBehaviour
         LoadHighScore();
     }
 
+	//define the format of data to be saved
     [System.Serializable]
     class SaveData 
     {
@@ -32,6 +34,7 @@ public class ScoreManager : MonoBehaviour
         public string playerName;
     }
 
+	//write the player name and the highSore in a json file if the current score is better than the high score
     public void SaveHighScore()
     {
         if(IsRecordBreaked)
@@ -46,6 +49,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+	//get the player name and the high score from the save file
     public void LoadHighScore()
     {
         string path = Application.persistentDataPath + "/savefile.json";
@@ -54,7 +58,7 @@ public class ScoreManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            hightScore = data.highSore;
+            highScore = data.highSore;
             playerName = data.playerName;
         }
     }

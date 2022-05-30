@@ -38,7 +38,7 @@ public class MainManager : MonoBehaviour
             }
         }
 
-        highScoreText.text = $"Highscore : {ScoreManager.Instance.playerName} : {ScoreManager.Instance.hightScore}";
+        highScoreText.text = $"Highscore : {ScoreManager.Instance.playerName} : {ScoreManager.Instance.highScore}";
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
-            if(m_Points > ScoreManager.Instance.hightScore)
+            if(m_Points > ScoreManager.Instance.highScore)
             {
                 ScoreManager.Instance.IsRecordBreaked = true;
                 ScoreManager.Instance.currentScore = m_Points;
